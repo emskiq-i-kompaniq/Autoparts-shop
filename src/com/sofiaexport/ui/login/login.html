@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="loginPageStyle.css" />
+    <title>Login</title>
+</head>
+
+<body>
+<main>
+    <header class="header">
+        <img id="header-img" src="../../assets/autoshop.png" />
+    </header>
+    <form class="input-data">
+    <div class="input-div">
+        <i class="fas fa-user" id="user"></i>
+        <input type="email" name="email" placeholder="Email:" class="login-input" />
+    </div>
+    <div class="input-div">
+        <i class="fas fa-key"></i>
+        <input type="password" name="password" placeholder="Password:" class="login-input" />
+    </div>
+    <section class="newAccount-checkbox">
+        <a href="../signup/signup.html" id="newAccount">You do not have an account? Create new one!</a>
+        <div class="checkbox">
+            <input type="checkbox" />
+            <span>Remember me</span>
+        </div>
+    </section>
+    <div class="login-btn">
+        <button id="login-btn" type="submit" name="login"><i class="fas fa-sign-in-alt"></i>Login</button>
+    </div>
+    </form>
+</main>
+</body>
+
+</html>
