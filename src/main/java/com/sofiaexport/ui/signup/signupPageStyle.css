@@ -45,7 +45,7 @@ main {
     margin-bottom: 20px;
 }
 
-.input-data {
+.register-form {
     width: 100%;
     display: flex;
     flex-direction: column;

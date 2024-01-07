@@ -26,7 +26,6 @@ public class User {
     @Column
     private String password;
 
-
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_auto_parts",
