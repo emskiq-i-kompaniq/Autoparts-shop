@@ -57,4 +57,8 @@ public class AutoPart {
         this.compatibleCars = Collections.emptySet();
         this.ordersWithPart = Collections.emptySet();
     }
+
+    public void decreaseStockQuantity() {
+        this.countInStockItems--;
+    }
 }

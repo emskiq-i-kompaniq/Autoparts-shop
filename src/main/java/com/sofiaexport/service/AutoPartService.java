@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -30,5 +31,13 @@ public class AutoPartService {
 
     public AutoPart findAutoPartById(Long id) {
         return autoPartRepository.findById(id).orElseThrow(() -> new AutoPartNotFoundException(id));
+    }
+
+    //TODO has to be transactional
+    public void decreaseStock(Set<AutoPart> parts) {
+        for (AutoPart part: parts) {
+            part.decreaseStockQuantity();
+            autoPartRepository.save(part);
+        }
     }
 }
