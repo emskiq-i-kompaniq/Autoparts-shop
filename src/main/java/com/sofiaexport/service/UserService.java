@@ -17,8 +17,14 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-
     public List<User> getUsers() {
         return userRepository.findAll();
+    }
+
+    public void registerNewUser(User user) {
+        if (userRepository.findUserByEmail(user.getEmail()).isPresent()) {
+            throw new IllegalStateException("User already added");
+        }
+        userRepository.save(user);
     }
 }
