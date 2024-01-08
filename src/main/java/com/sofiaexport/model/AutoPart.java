@@ -2,6 +2,7 @@ package com.sofiaexport.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Collections;
@@ -11,6 +12,7 @@ import java.util.Set;
 @Table
 @Getter
 @Setter
+@NoArgsConstructor
 public class AutoPart {
 
     @Id
@@ -54,9 +56,5 @@ public class AutoPart {
         this.users = Collections.emptySet();
         this.compatibleCars = Collections.emptySet();
         this.ordersWithPart = Collections.emptySet();
-    }
-
-    public AutoPart() {
-
     }
 }

@@ -1,21 +1,17 @@
 package com.sofiaexport.service;
 
+import com.sofiaexport.exception.UserNotFoundException;
 import com.sofiaexport.model.User;
 import com.sofiaexport.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
-
     private final UserRepository userRepository;
-
-    @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     public List<User> getUsers() {
         return userRepository.findAll();
@@ -26,5 +22,9 @@ public class UserService {
             throw new IllegalStateException("User already added");
         }
         userRepository.save(user);
+    }
+
+    public User findUserById(Long id) {
+        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 }

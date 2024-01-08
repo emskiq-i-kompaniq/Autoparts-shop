@@ -1,6 +1,7 @@
 package com.sofiaexport.service;
 
 import com.sofiaexport.commands.FindAutoPartsCommand;
+import com.sofiaexport.exception.AutoPartNotFoundException;
 import com.sofiaexport.model.AutoPart;
 import com.sofiaexport.repository.AutoPartRepository;
 import com.sofiaexport.repository.AutoPartRepositoryCustom;
@@ -27,4 +28,7 @@ public class AutoPartService {
         return autoPartRepositoryCustom.findAutoParts(command);
     }
 
+    public AutoPart findAutoPartById(Long id) {
+        return autoPartRepository.findById(id).orElseThrow(() -> new AutoPartNotFoundException(id));
+    }
 }

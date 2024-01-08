@@ -2,7 +2,9 @@ package com.sofiaexport.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.Collections;
 import java.util.Set;
@@ -11,6 +13,8 @@ import java.util.Set;
 @Table
 @Getter
 @Setter
+@NoArgsConstructor
+@ToString
 public class UserOrder {
 
     @Id
@@ -46,7 +50,8 @@ public class UserOrder {
         this.autoPartsInOrder = Collections.emptySet();
     }
 
-    public UserOrder() {
-
+    public void addAutoPart(AutoPart autoPart) {
+        setSum(sum + autoPart.getPrice());
+        autoPartsInOrder.add(autoPart);
     }
 }
