@@ -54,4 +54,15 @@ public class UserOrder {
         setSum(sum + autoPart.getPrice());
         autoPartsInOrder.add(autoPart);
     }
+
+    public void removeAutoPart(AutoPart autoPartToRemove) {
+        if (autoPartsInOrder.contains(autoPartToRemove)) {
+            setSum(getSum() - autoPartToRemove.getPrice());
+            autoPartsInOrder.remove(autoPartToRemove);
+            // Optionally, update any other fields related to the order as needed
+        } else {
+            // Handle case where the AutoPart is not in the order
+            return;
+        }
+    }
 }

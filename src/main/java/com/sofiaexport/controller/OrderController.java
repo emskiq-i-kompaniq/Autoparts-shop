@@ -1,6 +1,7 @@
 package com.sofiaexport.controller;
 
 import com.sofiaexport.commands.AddItemToOrderCommand;
+import com.sofiaexport.commands.RemoveItemFromOrderCommand;
 import com.sofiaexport.exception.OrderNotFoundException;
 import com.sofiaexport.model.UserOrder;
 import com.sofiaexport.response.UserOrderResponse;
@@ -22,6 +23,11 @@ public class OrderController {
     @PostMapping(path = "/v1/add-item")
     public void addItemToOrder(@RequestBody final AddItemToOrderCommand command) {
         orderService.addItemToOrder(command);
+    }
+
+    @PostMapping(path = "/v1/remove-item")
+    public void removeItemFromOrder(@RequestBody final RemoveItemFromOrderCommand command) {
+        orderService.removeItemFromOrder(command);
     }
 
     @GetMapping(path = "/v1/user/{userId}/order", produces = "application/json")

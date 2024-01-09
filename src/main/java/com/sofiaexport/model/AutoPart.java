@@ -1,6 +1,7 @@
 package com.sofiaexport.model;
 
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,8 +14,10 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class AutoPart {
 
+    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue
     private long id;
