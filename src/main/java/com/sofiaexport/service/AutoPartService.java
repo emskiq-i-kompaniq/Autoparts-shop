@@ -29,7 +29,7 @@ public class AutoPartService {
         return autoPartRepositoryCustom.findAutoParts(command);
     }
 
-    public AutoPart findAutoPartById(Long id) {
+    public AutoPart findAutoPartById(String id) {
         return autoPartRepository.findById(id).orElseThrow(() -> new AutoPartNotFoundException(id));
     }
 

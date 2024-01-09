@@ -11,14 +11,14 @@ import java.util.List;
 @Value
 @Builder
 public class UserOrderResponse {
-    private final Long id;
-    private final Long userId;
-    private final List<Long> itemIds;
+    private final String id;
+    private final String userId;
+    private final List<String> itemIds;
     private final Double sum;
     private final OrderStatus orderStatus;
 
     public static UserOrderResponse from(UserOrder order) {
-        List<Long> items = order.getAutoPartsInOrder()
+        List<String> items = order.getAutoPartsInOrder()
                 .stream()
                 .map(AutoPart::getId)
                 .toList();

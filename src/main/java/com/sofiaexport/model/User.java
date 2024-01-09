@@ -2,7 +2,9 @@ package com.sofiaexport.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.Collections;
 import java.util.Set;
@@ -11,11 +13,12 @@ import java.util.Set;
 @Getter
 @Table
 @Entity
+@NoArgsConstructor
 public class User {
 
     @Id
-    @GeneratedValue()
-    private Long id;
+    @UuidGenerator
+    private String id;
 
     @Column
     private String name;
@@ -26,14 +29,6 @@ public class User {
     @Column
     private String password;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "user_auto_parts",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "auto_part_id")
-    )
-    private Set<AutoPart> autoParts;
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<UserOrder> orders;
 
@@ -41,15 +36,6 @@ public class User {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.autoParts = Collections.emptySet();
-        this.orders = Collections.emptySet();
-    }
-
-    public User() {
-        this.name = "";
-        this.email = "";
-        this.password = "";
-        this.autoParts = Collections.emptySet();
         this.orders = Collections.emptySet();
     }
 }

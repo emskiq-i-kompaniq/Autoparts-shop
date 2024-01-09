@@ -31,14 +31,14 @@ public class OrderController {
     }
 
     @GetMapping(path = "/v1/user/{userId}/order", produces = "application/json")
-    public UserOrderResponse getPendingOrder(@PathVariable long userId) {
+    public UserOrderResponse getPendingOrder(@PathVariable String userId) {
         userService.findUserById(userId); // throws if user not found
         UserOrder order = orderService.findPendingOrderForUser(userId).orElseThrow(() -> new OrderNotFoundException(userId));
         return UserOrderResponse.from(order);
     }
 
     @PutMapping(path = "/v1/order/{orderId}/checkout")
-    public void checkout(@PathVariable Long orderId) {
+    public void checkout(@PathVariable String orderId) {
         orderService.checkoutOrder(orderId);
     }
 }

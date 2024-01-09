@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code = HttpStatus.BAD_REQUEST)
 public class OrderAlreadyCompletedException extends RuntimeException {
-    public OrderAlreadyCompletedException(Long orderId) {
+    public OrderAlreadyCompletedException(String orderId) {
         super("Request for completion of order with id: " + orderId + " failed as order was already completed");
     }
 }

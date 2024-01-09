@@ -69,7 +69,7 @@ public class OrderService {
         }
     }
 
-    public Optional<UserOrder> findPendingOrderForUser(Long userId) {
+    public Optional<UserOrder> findPendingOrderForUser(String userId) {
         List<UserOrder> pendingOrders = orderRepository.findByUser_IdAndStatus(userId, OrderStatus.PENDING);
 
         return pendingOrders.isEmpty()
@@ -77,13 +77,13 @@ public class OrderService {
                 : Optional.of(pendingOrders.get(0));
     }
 
-    public void checkoutOrder(Long orderId) {
+    public void checkoutOrder(String orderId) {
         UserOrder order = orderRepository.findById(orderId).orElseThrow(() -> new OrderNotFoundException(orderId));
         if (order.getStatus() == OrderStatus.COMPLETED) {
             throw new OrderAlreadyCompletedException(orderId);
         }
 
-        Set<Long> outOfStockAutoPartsIds = getOutOfStockAutoPartsIds(order.getAutoPartsInOrder());
+        Set<String> outOfStockAutoPartsIds = getOutOfStockAutoPartsIds(order.getAutoPartsInOrder());
         if (!outOfStockAutoPartsIds.isEmpty()) {
             throw new InsufficientQuantityException(
                     "AutoParts with the following ids: " + outOfStockAutoPartsIds + " are out of stock");
@@ -96,7 +96,7 @@ public class OrderService {
         orderRepository.save(order);
     }
 
-    private Set<Long> getOutOfStockAutoPartsIds(Set<AutoPart> autoPartsToPurchase) {
+    private Set<String> getOutOfStockAutoPartsIds(Set<AutoPart> autoPartsToPurchase) {
         return autoPartsToPurchase
                 .stream()
                 .filter(autoPart -> autoPart.getCountInStockItems() == 0)

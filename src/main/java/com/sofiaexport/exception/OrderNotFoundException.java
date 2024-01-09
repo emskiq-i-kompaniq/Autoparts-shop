@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code = HttpStatus.NOT_FOUND)
 public class OrderNotFoundException extends ResourceNotFoundException {
-    public OrderNotFoundException(Long id) {
+    public OrderNotFoundException(String id) {
         super("UserOrder with id: " + id + " was not found!");
     }
 }

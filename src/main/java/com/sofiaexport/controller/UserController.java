@@ -1,5 +1,6 @@
 package com.sofiaexport.controller;
 
+import com.sofiaexport.commands.AddUserCommand;
 import com.sofiaexport.model.User;
 import com.sofiaexport.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class UserController {
     }
 
     @PostMapping(path = "/v1/register")
-    public void registerUser(@RequestBody User user) {
+    public void registerUser(@RequestBody final AddUserCommand user) {
         userService.registerNewUser(user);
     }
 }

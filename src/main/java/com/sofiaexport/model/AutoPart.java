@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.Collections;
 import java.util.Set;
@@ -17,15 +18,15 @@ import java.util.Set;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class AutoPart {
 
-    @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue
-    private long id;
+    @UuidGenerator
+    private String id;
 
     @Column
     private String brand;
 
     @Column
+    @Enumerated(EnumType.STRING)
     private PartType partType;
 
     @Column
@@ -40,9 +41,6 @@ public class AutoPart {
     @Column
     private Integer countInStockItems;
 
-    @ManyToMany(mappedBy = "autoParts")
-    private Set<User> users;
-
     @ManyToMany(mappedBy = "compatibleParts")
     private Set<Car> compatibleCars;
 
@@ -56,7 +54,6 @@ public class AutoPart {
         this.price = price;
         this.serialNumber = serialNumber;
         this.countInStockItems = countInStockItems;
-        this.users = Collections.emptySet();
         this.compatibleCars = Collections.emptySet();
         this.ordersWithPart = Collections.emptySet();
     }

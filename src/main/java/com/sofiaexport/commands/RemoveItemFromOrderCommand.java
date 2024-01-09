@@ -4,6 +4,6 @@ import lombok.Value;
 
 @Value
 public class RemoveItemFromOrderCommand {
-    private final Long userId;
-    private final Long autoPartId;
+    private final String userId;
+    private final String autoPartId;
 }

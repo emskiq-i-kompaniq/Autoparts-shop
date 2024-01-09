@@ -5,9 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.Collections;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table
@@ -18,10 +20,11 @@ import java.util.Set;
 public class UserOrder {
 
     @Id
-    @GeneratedValue
-    private Long id;
+    @UuidGenerator
+    private String id;
 
     @Column
+    @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
     @Column

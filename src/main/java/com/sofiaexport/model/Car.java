@@ -2,7 +2,9 @@ package com.sofiaexport.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.Collections;
 import java.util.Set;
@@ -11,11 +13,12 @@ import java.util.Set;
 @Table
 @Getter
 @Setter
+@NoArgsConstructor
 public class Car {
 
     @Id
-    @GeneratedValue
-    private long id;
+    @UuidGenerator
+    private String id;
 
     @Column
     private String brand;
@@ -39,9 +42,5 @@ public class Car {
         this.model = model;
         this.engine = engine;
         this.compatibleParts = Collections.emptySet();
-    }
-
-    public Car() {
-
     }
 }
