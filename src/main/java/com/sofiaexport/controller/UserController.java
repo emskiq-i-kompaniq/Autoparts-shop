@@ -25,7 +25,7 @@ public class UserController {
     }
 
     @PostMapping(path = "/v1/register")
-    public void registerUser(@RequestBody final AddUserCommand user) {
-        userService.registerNewUser(user);
+    public String registerUser(@RequestBody final AddUserCommand user) {
+        return userService.registerNewUser(user);
     }
 }

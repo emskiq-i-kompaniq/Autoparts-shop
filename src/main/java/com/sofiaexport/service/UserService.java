@@ -18,12 +18,12 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public void registerNewUser(AddUserCommand user) {
+    public String registerNewUser(AddUserCommand user) {
         if (userRepository.findUserByEmail(user.email()).isPresent()) {
             throw new IllegalStateException("User already added");
         }
         User userToAdd = new User(user.name(), user.email(), user.password());
-        userRepository.save(userToAdd);
+        return userRepository.save(userToAdd).getId();
     }
 
     public User findUserById(String id) {
