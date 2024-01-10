@@ -67,6 +67,10 @@ public class OrderService {
                 : Optional.of(pendingOrders.get(0));
     }
 
+    public List<UserOrder> findCompletedOrdersForUser(String userId) {
+        return orderRepository.findByUser_IdAndStatus(userId, OrderStatus.COMPLETED);
+    }
+
     public void checkoutOrder(String orderId) {
         UserOrder order = orderRepository.findById(orderId).orElseThrow(() -> new OrderNotFoundException(orderId));
         if (order.getStatus() == OrderStatus.COMPLETED) {

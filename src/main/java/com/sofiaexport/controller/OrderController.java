@@ -11,6 +11,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping(path = "/api")
@@ -40,5 +42,14 @@ public class OrderController {
     @PutMapping(path = "/v1/order/{orderId}/checkout")
     public void checkout(@PathVariable String orderId) {
         orderService.checkoutOrder(orderId);
+    }
+
+    @GetMapping(path = "/v1/user/{userId}/orders")
+    public List<UserOrderResponse> getUserOrderHistory(@PathVariable String userId) {
+        userService.findUserById(userId); // throws if user not found
+        return orderService.findCompletedOrdersForUser(userId)
+                .stream()
+                .map(UserOrderResponse::from)
+                .toList();
     }
 }
