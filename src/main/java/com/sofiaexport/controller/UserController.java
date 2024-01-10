@@ -3,11 +3,13 @@ package com.sofiaexport.controller;
 import com.sofiaexport.commands.AddUserCommand;
 import com.sofiaexport.response.UserResponse;
 import com.sofiaexport.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "Users")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api")

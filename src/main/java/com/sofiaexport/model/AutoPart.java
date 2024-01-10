@@ -20,6 +20,7 @@ public class AutoPart {
 
     @Id
     @UuidGenerator
+    @EqualsAndHashCode.Include
     private String id;
 
     @Column
