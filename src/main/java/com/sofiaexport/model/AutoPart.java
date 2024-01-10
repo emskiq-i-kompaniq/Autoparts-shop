@@ -58,6 +58,13 @@ public class AutoPart {
         this.ordersWithPart = Collections.emptySet();
     }
 
+    public void setCountInStockItems(Integer countInStockItems) {
+        if (countInStockItems < 0) {
+            throw new IllegalArgumentException("countInStockItems should be greater than or equal to 0");
+        }
+        this.countInStockItems = countInStockItems;
+    }
+
     public void decreaseStockQuantity() {
         this.countInStockItems--;
     }

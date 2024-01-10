@@ -2,10 +2,7 @@ package com.sofiaexport.service;
 
 import com.sofiaexport.commands.AddItemToOrderCommand;
 import com.sofiaexport.commands.RemoveItemFromOrderCommand;
-import com.sofiaexport.exception.AutoPartNotFoundException;
-import com.sofiaexport.exception.InsufficientQuantityException;
-import com.sofiaexport.exception.OrderAlreadyCompletedException;
-import com.sofiaexport.exception.OrderNotFoundException;
+import com.sofiaexport.exception.*;
 import com.sofiaexport.model.AutoPart;
 import com.sofiaexport.model.OrderStatus;
 import com.sofiaexport.model.User;
@@ -49,23 +46,16 @@ public class OrderService {
 
     public void removeItemFromOrder(RemoveItemFromOrderCommand command) {
         User user = userService.findUserById(command.getUserId());
-        Optional<UserOrder> optionalOrder = findPendingOrderForUser(user.getId());
+        UserOrder order = findPendingOrderForUser(user.getId())
+                .orElseThrow(() -> new PendingOrderNotFoundException(command.getUserId()));
 
-        if (optionalOrder.isPresent()) {
-            UserOrder order = optionalOrder.get();
-            AutoPart autoPartToRemove = autoPartService.findAutoPartById(command.getAutoPartId());
+        AutoPart autoPartToRemove = autoPartService.findAutoPartById(command.getAutoPartId());
 
-            if (order.getAutoPartsInOrder().contains(autoPartToRemove)) {
-                order.removeAutoPart(autoPartToRemove);
-                orderRepository.save(order);
-            } else {
-                // Handle case where the AutoPart is not in the order
-                throw new AutoPartNotFoundException(command.getAutoPartId());
-
-            }
+        if (order.getAutoPartsInOrder().contains(autoPartToRemove)) {
+            order.removeAutoPart(autoPartToRemove);
+            orderRepository.save(order);
         } else {
-            // Handle case where there is no pending order for the user
-            throw new OrderNotFoundException(command.getUserId());
+            throw new AutoPartNotFoundException(command.getAutoPartId());
         }
     }
 

@@ -21,8 +21,8 @@ public class AutoPartService {
         return autoPartRepository.findAll();
     }
 
-    public void saveAutoPart(AutoPart autoPart) {
-        autoPartRepository.save(autoPart);
+    public String saveAutoPart(AutoPart autoPart) {
+        return autoPartRepository.save(autoPart).getId();
     }
 
     public List<AutoPart> findAutoParts(FindAutoPartsCommand command) {
@@ -33,11 +33,8 @@ public class AutoPartService {
         return autoPartRepository.findById(id).orElseThrow(() -> new AutoPartNotFoundException(id));
     }
 
-    //TODO has to be transactional
     public void decreaseStock(Set<AutoPart> parts) {
-        for (AutoPart part: parts) {
-            part.decreaseStockQuantity();
-            autoPartRepository.save(part);
-        }
+        parts.parallelStream().forEach(AutoPart::decreaseStockQuantity);
+        autoPartRepository.saveAll(parts);
     }
 }
