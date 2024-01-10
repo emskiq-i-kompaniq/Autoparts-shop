@@ -1,27 +1,25 @@
 package com.sofiaexport.controller;
 
 import com.sofiaexport.commands.AddUserCommand;
-import com.sofiaexport.model.User;
+import com.sofiaexport.response.UserResponse;
 import com.sofiaexport.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api")
 public class UserController {
-
     private final UserService userService;
 
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-
     @GetMapping(path = "/v1/users")
-    public List<User> getUsers() {
-        return userService.getUsers();
+    public List<UserResponse> getUsers() {
+        return userService.getUsers()
+                .stream()
+                .map(UserResponse::from)
+                .toList();
     }
 
     @PostMapping(path = "/v1/register")
