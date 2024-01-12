@@ -1,7 +1,6 @@
 package com.sofiaexport.controller;
 
 import com.sofiaexport.commands.AddUserCommand;
-import com.sofiaexport.dto.UserDto;
 import com.sofiaexport.response.UserResponse;
 import com.sofiaexport.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -18,10 +17,10 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping(path = "/v1/users")
-    public List<UserDto> getUsers() {
+    public List<UserResponse> getUsers() {
         return userService.getUsers()
                 .stream()
-                .map(UserDto::fromUser) // Using a static method in UserDto to convert User to UserDto
+                .map(UserResponse::from)
                 .toList();
     }
 
