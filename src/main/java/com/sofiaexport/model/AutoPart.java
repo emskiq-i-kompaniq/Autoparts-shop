@@ -1,5 +1,6 @@
 package com.sofiaexport.model;
 
+import com.sofiaexport.exception.InsufficientQuantityException;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -48,6 +49,9 @@ public class AutoPart {
     @ManyToMany(mappedBy = "autoPartsInOrder")
     private Set<UserOrder> ordersWithPart;
 
+    @Version
+    private short version;
+
     public AutoPart(String brand, PartType partType, String description, Double price, String serialNumber, Integer countInStockItems) {
         this.brand = brand;
         this.partType = partType;
@@ -68,5 +72,8 @@ public class AutoPart {
 
     public void decreaseStockQuantity() {
         this.countInStockItems--;
+        if (countInStockItems < 0) {
+            throw new InsufficientQuantityException("AutoPart with id: " + id + " is out of stock");
+        }
     }
 }

@@ -9,7 +9,6 @@ import org.hibernate.annotations.UuidGenerator;
 
 import java.util.Collections;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Table
@@ -45,6 +44,9 @@ public class UserOrder {
     )
     private Set<AutoPart> autoPartsInOrder;
 
+    @Version
+    private Long version;
+
     public UserOrder(OrderStatus status, Double sum, Long timestamp) {
         this.status = status;
         this.sum = sum;
@@ -54,7 +56,7 @@ public class UserOrder {
     }
 
     public void addAutoPart(AutoPart autoPart) {
-        setSum(sum + autoPart.getPrice());
+        setSum(getSum() + autoPart.getPrice());
         autoPartsInOrder.add(autoPart);
     }
 
@@ -62,10 +64,6 @@ public class UserOrder {
         if (autoPartsInOrder.contains(autoPartToRemove)) {
             setSum(getSum() - autoPartToRemove.getPrice());
             autoPartsInOrder.remove(autoPartToRemove);
-            // Optionally, update any other fields related to the order as needed
-        } else {
-            // Handle case where the AutoPart is not in the order
-            return;
         }
     }
 }

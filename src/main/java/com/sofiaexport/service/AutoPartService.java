@@ -9,6 +9,7 @@ import com.sofiaexport.repository.AutoPartRepository;
 import com.sofiaexport.repository.AutoPartRepositoryCustom;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.List;
@@ -20,10 +21,6 @@ public class AutoPartService {
     private final AutoPartRepository autoPartRepository;
     private final AutoPartRepositoryCustom autoPartRepositoryCustom;
     private final CarService carService;
-
-    public List<AutoPart> findAllAutoParts() {
-        return autoPartRepository.findAll();
-    }
 
     public String saveAutoPart(AddAutoPartCommand addAutoPartCommand) {
         AutoPart autoPartToAdd = addAutoPartCommand.toAutoPart();
@@ -41,6 +38,7 @@ public class AutoPartService {
         return autoPartRepository.findById(id).orElseThrow(() -> new AutoPartNotFoundException(id));
     }
 
+    @Transactional
     public void decreaseStock(Set<AutoPart> parts) {
         parts.parallelStream().forEach(AutoPart::decreaseStockQuantity);
         autoPartRepository.saveAll(parts);

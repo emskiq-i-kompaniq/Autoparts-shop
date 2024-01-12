@@ -8,8 +8,12 @@ import com.sofiaexport.model.OrderStatus;
 import com.sofiaexport.model.User;
 import com.sofiaexport.model.UserOrder;
 import com.sofiaexport.repository.OrderRepository;
+import jakarta.persistence.OptimisticLockException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.retry.annotation.Backoff;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.List;
@@ -24,6 +28,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final AutoPartService autoPartService;
 
+    @Transactional
     public void addItemToOrder(AddItemToOrderCommand command) {
         AutoPart autoPartToAdd = autoPartService.findAutoPartById(command.getAutoPartId());
         User user = userService.findUserById(command.getUserId());
@@ -44,6 +49,7 @@ public class OrderService {
         orderRepository.save(order);
     }
 
+    @Transactional
     public void removeItemFromOrder(RemoveItemFromOrderCommand command) {
         User user = userService.findUserById(command.getUserId());
         UserOrder order = findPendingOrderForUser(user.getId())
@@ -71,6 +77,11 @@ public class OrderService {
         return orderRepository.findByUser_IdAndStatus(userId, OrderStatus.COMPLETED);
     }
 
+    @Retryable(
+            retryFor = OptimisticLockException.class,
+            maxAttempts = 2,
+            backoff = @Backoff(delay = 100))
+    @Transactional
     public void checkoutOrder(String orderId) {
         UserOrder order = orderRepository.findById(orderId).orElseThrow(() -> new OrderNotFoundException(orderId));
         if (order.getStatus() == OrderStatus.COMPLETED) {
