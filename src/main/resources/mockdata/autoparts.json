@@ -1,0 +1,62 @@
+[
+  {
+    "brand": "AUDI",
+    "description": "description",
+    "serialNumber": "438dj84",
+    "countInStockItems": 10,
+    "partType": "FILTER",
+    "price": 100,
+    "compatibleCarsIds": [
+    ]
+  },
+  {
+    "brand": "BMW",
+    "description": "description",
+    "serialNumber": "12345dsf",
+    "countInStockItems": 1,
+    "partType": "CLUTCH",
+    "price": 421.68,
+    "compatibleCarsIds": [
+    ]
+  },
+  {
+    "brand": "BMW",
+    "description": "description",
+    "serialNumber": "438dj84",
+    "countInStockItems": 8,
+    "partType": "FILTER",
+    "price": 512,
+    "compatibleCarsIds": [
+    ]
+  },
+  {
+    "brand": "MERCEDES",
+    "description": "description",
+    "serialNumber": "123er5dsf",
+    "countInStockItems": 6,
+    "partType": "CLUTCH",
+    "price": 290.12,
+    "compatibleCarsIds": [
+    ]
+  },
+  {
+    "brand": "MERCEDES",
+    "description": "description",
+    "serialNumber": "32486387",
+    "countInStockItems": 7,
+    "partType": "FILTER",
+    "price": 140,
+    "compatibleCarsIds": [
+    ]
+  },
+  {
+    "brand": "AUDI",
+    "description": "description",
+    "serialNumber": "12345dsf",
+    "countInStockItems": 3,
+    "partType": "CLUTCH",
+    "price": 232.12,
+    "compatibleCarsIds": [
+    ]
+  }
+]
