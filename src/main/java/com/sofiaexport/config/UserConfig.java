@@ -17,7 +17,6 @@ public class UserConfig {
             User pavlin = new User("Pavlin", "pavlindimitrov12@gmail.com", "password123");
             AutoPart oilFilter = new AutoPart("Mann", PartType.FILTER, "maslen filtur", 25.50, "1234", 4);
             UserOrder firstOrder = new UserOrder(OrderStatus.PENDING, 152.00, 2L);
-            Car myCar = new Car("BMW", "E90", "2.0d");
             userRepository.saveAll(List.of(pavlin));
         };
     }

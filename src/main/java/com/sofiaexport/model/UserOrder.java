@@ -1,10 +1,7 @@
 package com.sofiaexport.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.util.Collections;
@@ -12,8 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @ToString
 public class UserOrder {

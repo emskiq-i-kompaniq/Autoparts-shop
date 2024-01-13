@@ -1,18 +1,15 @@
-let registerForm = document.getElementsByClassName("register-form")[0];
-registerForm.addEventListener("submit", function (event) {
+let loginForm = document.getElementsByClassName("login-form")[0];
+loginForm.addEventListener("submit", function (event) {
     event.preventDefault();
-    const username = document.getElementById("username").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
     const userData = {
-        username: username,
         email: email,
-        password: password,
-        role: "USER"
+        password: password
     };
 
-    fetch('http://localhost:8080/api/v1/auth/register', {
+    fetch('http://localhost:8080/api/v1/auth/authenticate', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

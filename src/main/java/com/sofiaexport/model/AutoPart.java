@@ -2,10 +2,7 @@ package com.sofiaexport.model;
 
 import com.sofiaexport.exception.InsufficientQuantityException;
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.util.Collections;
@@ -13,8 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class AutoPart {
