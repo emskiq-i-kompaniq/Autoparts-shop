@@ -13,16 +13,19 @@
 <header class="header">
     <a href="#" class="logo">Autoparts LEP</a>
     <nav class="nav-items">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
+        <a href="../home/home-page.html">Home</a>
+        <a href="../login/login.html">Login</a>
+        <a href="../profile/profile.html">Profile/Orders</a>
     </nav>
 </header>
 <main>
     <div class="intro">
         <h1>Autoparts LEP</h1>
         <p>Find parts for you car on the best price!</p>
-        <button>Search - TODO</button>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for brands..." id="searchInput">
+        </div>
+        <button onclick="searchParts()">Search</button>
     </div>
     <br>
     <div class="parts">
@@ -31,7 +34,9 @@
         </div>
     </div>
     <div>
-        <h1>TODO: Add autparts</h1>
+    </div>
+    <div id="parts-container" class="clearfix">
+            <!--   Parts loaded from the JS   -->
     </div>
 </main>
 <footer class="footer">
@@ -40,14 +45,13 @@
         <div class="links">
             <span>More Info</span>
             <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+            <a href="#">Contacts</a>
         </div>
         <div class="links">
             <span>Social Links</span>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook">Facebook</i></a>
+            <a href="#"><i class="fab fa-twitter">Twitter</i></a>
+            <a href="#"><i class="fab fa-instagram">KUR</i></a>
         </div>
     </div>
 </footer>

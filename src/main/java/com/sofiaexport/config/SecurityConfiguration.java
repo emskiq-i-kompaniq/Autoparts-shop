@@ -30,7 +30,11 @@ public class SecurityConfiguration {
             "/configuration/security",
             "/swagger-ui/**",
             "/webjars/**",
-            "/swagger-ui.html"};
+            "/swagger-ui.html",
+            "/api/v1/autopart",         // Emo - Delete that endpoint from here or perhaps change it to display only parts
+            "/api/v1/autoparts/**"      // that un-registered user is available to see
+    };
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
