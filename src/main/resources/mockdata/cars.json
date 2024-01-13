@@ -1,0 +1,47 @@
+[
+  {
+    "brand": "BMW",
+    "model": "X1",
+    "engine": "engine1"
+  },
+  {
+    "brand": "BMW",
+    "model": "X2",
+    "engine": "engine2"
+  },
+  {
+    "brand": "BMW",
+    "model": "X3",
+    "engine": "engine2"
+  },
+  {
+    "brand": "AUDI",
+    "model": "Q6",
+    "engine": "engine1"
+  },
+  {
+    "brand": "AUDI",
+    "model": "Q7",
+    "engine": "engine2"
+  },
+  {
+    "brand": "AUDI",
+    "model": "Q8",
+    "engine": "engine3"
+  },
+  {
+    "brand": "MERCEDES",
+    "model": "GLA",
+    "engine": "engine1"
+  },
+  {
+    "brand": "MERCEDES",
+    "model": "GLB",
+    "engine": "engine2"
+  },
+  {
+    "brand": "MERCEDES",
+    "model": "GLC",
+    "engine": "engine1"
+  }
+]
