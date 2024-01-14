@@ -35,7 +35,6 @@ class AutoPartControllerTest {
 
     @Test
     void addAutoPart_ShouldReturnSuccessMessage() throws Exception {
-        /*
         AddAutoPartCommand addAutoPartCommand = new AddAutoPartCommand(
                 "ExampleBrand",
                 "ExampleDescription",
@@ -55,27 +54,20 @@ class AutoPartControllerTest {
                 .andExpect(MockMvcResultMatchers.content().string("Success"));
 
         verify(autoPartService, times(1)).saveAutoPart(addAutoPartCommand);
-        */
     }
 
     @Test
     void findAutoParts_ShouldReturnAutoPartResponses() throws Exception {
-        /*
-        // Arrange
         FindAutoPartsCommand findAutoPartsCommand = new FindAutoPartsCommand("BILSTEIN", PartType.FILTER, 200.0);
 
         List<AutoPart> autoParts = List.of(new AutoPart("", PartType.CLUTCH, "description", 20.0, "serialNumber", 2));
         when(autoPartService.findAutoParts(ArgumentMatchers.any(FindAutoPartsCommand.class)))
                 .thenReturn(autoParts);
 
-        // Act & Assert
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/autoparts")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(findAutoPartsCommand)))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(autoParts.size()));
-
-        // Verify that the service method was called with the correct argument
-        verify(autoPartService, times(1)).findAutoParts(findAutoPartsCommand);*/
     }
 }
