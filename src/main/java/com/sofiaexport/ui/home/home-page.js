@@ -9,6 +9,10 @@ function createPartBox(autoPart) {
             <p>Price: ${autoPart.price}</p>
         `;
 
+    partBox.addEventListener('click', function () {
+        window.location.href = `../details/details.html?id=${autoPart.id}`;
+    });
+
     return partBox;
 }
 document.addEventListener('DOMContentLoaded', function () {
