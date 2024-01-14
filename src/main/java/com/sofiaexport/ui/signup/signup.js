@@ -1,12 +1,12 @@
 let registerForm = document.getElementsByClassName("register-form")[0];
 registerForm.addEventListener("submit", function (event) {
     event.preventDefault();
-    const username = document.getElementById("username").value;
+    const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
     const userData = {
-        username: username,
+        name: name,
         email: email,
         password: password,
         role: "USER"
