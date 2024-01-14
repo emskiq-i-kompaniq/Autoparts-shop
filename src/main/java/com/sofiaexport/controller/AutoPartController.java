@@ -32,8 +32,6 @@ public class AutoPartController {
 
     @GetMapping(path = "/v1/autoparts/{id}")
     public AutoPartResponse findAutoPartById(@PathVariable String  id) {
-        var response = AutoPartResponse.from(autoPartService.findAutoPartById(id));
-        System.out.println(response.getId());
-        return response;
+        return AutoPartResponse.from(autoPartService.findAutoPartById(id));
     }
 }
