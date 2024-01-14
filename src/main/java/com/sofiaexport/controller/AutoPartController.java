@@ -29,4 +29,11 @@ public class AutoPartController {
                 .map(AutoPartResponse::from)
                 .toList();
     }
+
+    @GetMapping(path = "/v1/autoparts/{id}")
+    public AutoPartResponse findAutoPartById(@PathVariable String  id) {
+        var response = AutoPartResponse.from(autoPartService.findAutoPartById(id));
+        System.out.println(response.getId());
+        return response;
+    }
 }

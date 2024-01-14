@@ -32,7 +32,9 @@ public class SecurityConfiguration {
             "/webjars/**",
             "/swagger-ui.html",
             "/api/v1/autopart",         // Emo - Delete that endpoint from here or perhaps change it to display only parts
-            "/api/v1/autoparts/**"      // that un-registered user is available to see
+            "/api/v1/autoparts/**",     // that un-registered user is available to see
+            "/api/v1/autoparts/{id}",
+            "/api/v1/autoparts/{id}/**"
     };
 
 
