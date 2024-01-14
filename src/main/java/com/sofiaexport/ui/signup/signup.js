@@ -27,6 +27,7 @@ registerForm.addEventListener("submit", function (event) {
         })
         .then(data => {
             localStorage.setItem('accessToken', data.accessToken);
+            window.location.href = "../home/home-page.html"
         })
         .catch(error => {
             console.error('Error during registration:', error);
