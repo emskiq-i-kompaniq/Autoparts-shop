@@ -13,16 +13,21 @@ import java.util.List;
 public class UserOrderResponse {
     private final String id;
     private final String userId;
-    private final List<AutoPart> autoparts;
+    private final List<String> itemIds;
     private final Double sum;
     private final OrderStatus orderStatus;
 
     public static UserOrderResponse from(UserOrder order) {
+        List<String> items = order.getAutoPartsInOrder()
+                .stream()
+                .map(AutoPart::getId)
+                .toList();
+
         return UserOrderResponse.builder()
                 .id(order.getId())
                 .userId(order.getUser().getId())
                 .sum(order.getSum())
-                .autoparts(order.getAutoPartsInOrder().stream().toList())
+                .itemIds(items)
                 .orderStatus(order.getStatus())
                 .build();
     }
