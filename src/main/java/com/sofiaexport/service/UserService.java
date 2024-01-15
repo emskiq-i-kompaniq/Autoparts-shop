@@ -58,6 +58,7 @@ public class UserService {
         saveUserToken(savedUser, jwtToken);
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
+                .userId(savedUser.getId())
                 .build();
     }
 
@@ -75,6 +76,7 @@ public class UserService {
         saveUserToken(user, jwtToken);
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
+                .userId(user.getId())
                 .build();
     }
 

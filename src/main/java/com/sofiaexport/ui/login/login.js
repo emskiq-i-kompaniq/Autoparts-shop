@@ -24,6 +24,7 @@ loginForm.addEventListener("submit", function (event) {
         })
         .then(data => {
             localStorage.setItem('accessToken', data.accessToken);
+            localStorage.setItem('userId', data.userId)
             window.location.href = "../home/home-page.html"
         })
         .catch(error => {
