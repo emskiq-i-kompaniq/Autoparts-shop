@@ -7,11 +7,22 @@
     <link rel="stylesheet" href="cart.css">
 </head>
 <body>
+<div id="header-container"></div>
 <div class="container">
     <h1>Shopping Cart</h1>
     <ul id="cartItems"></ul>
 </div>
 
 <script src="cart.js"></script>
+<script src="../header/header.js"></script>
+<script>
+    fetch('../header/header.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('header-container').innerHTML = html;
+            checkToken();
+        })
+        .catch(error => console.error('Error fetching header HTML:', error));
+</script>
 </body>
 </html>
