@@ -1,41 +1,29 @@
 package com.sofiaexport.controller;
 
-import com.sofiaexport.commands.AddUserCommand;
-import com.sofiaexport.commands.AuthenticationCommand;
-import com.sofiaexport.response.AuthenticationResponse;
+import com.sofiaexport.model.User;
 import com.sofiaexport.response.UserResponse;
 import com.sofiaexport.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Optional;
 
+@RestController
+@RequestMapping(path = "/api")
 @Tag(name = "Users")
 @RequiredArgsConstructor
-@RestController
-@RequestMapping("/api/v1/auth")
 public class UserController {
     private final UserService userService;
 
-    @GetMapping(path = "/users")
-    public List<UserResponse> getUsers() {
-        return userService.getUsers()
-                .stream()
-                .map(UserResponse::from) // Using a static method in UserDto to convert User to UserDto
-                .toList();
-    }
-
-    @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> authenticate(
-            @RequestBody AuthenticationCommand request
-    ) {
-        return ResponseEntity.ok(userService.authenticate(request));
-    }
-
-    @PostMapping(path = "/register")
-    public ResponseEntity<AuthenticationResponse> registerUser(@RequestBody final AddUserCommand user) {
-        return ResponseEntity.ok(userService.register(user));
+    @GetMapping("/v1/user/{userId}")
+    public ResponseEntity<UserResponse> getUser(@PathVariable String userId) {
+        Optional<User> user = userService.getUserById(userId);
+        return user.map(value -> ResponseEntity.ok(UserResponse.from(value))).orElseGet(() -> new ResponseEntity<>(HttpStatus.BAD_REQUEST));
     }
 }

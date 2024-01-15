@@ -18,8 +18,8 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 
-@WebMvcTest(UserController.class)
-class UserControllerTest {
+@WebMvcTest(AuthenticationController.class)
+class AuthenticationControllerTest {
 
     @MockBean
     private UserService userService;

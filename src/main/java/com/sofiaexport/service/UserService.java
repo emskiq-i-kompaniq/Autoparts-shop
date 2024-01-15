@@ -2,6 +2,7 @@ package com.sofiaexport.service;
 
 import com.sofiaexport.commands.AddUserCommand;
 import com.sofiaexport.commands.AuthenticationCommand;
+import com.sofiaexport.commands.GetUserCommand;
 import com.sofiaexport.exception.UserNotFoundException;
 import com.sofiaexport.model.Token;
 import com.sofiaexport.model.TokenType;
@@ -16,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +34,10 @@ public class UserService {
 
     public List<User> getUsers() {
         return userRepository.findAll();
+    }
+
+    public Optional<User> getUserById(String userId) {
+        return userRepository.findById(userId);
     }
 
     public String registerNewUser(AddUserCommand user) {
