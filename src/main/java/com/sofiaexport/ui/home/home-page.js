@@ -30,9 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .catch(error => console.error('Error fetching auto parts:', error));
 
-    // Function to create a div element for an auto part
-
-
 });
 
 function searchParts() {
