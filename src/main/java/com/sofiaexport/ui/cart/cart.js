@@ -6,7 +6,14 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    fetch("http://localhost:8080/api/v1/user/" + userId + "/order")
+    var token = localStorage.getItem('accessToken');
+    var authToken = `Bearer ${token}`;
+
+    fetch("http://localhost:8080/api/v1/user/" + userId + "/order", {
+        headers: {
+            'Authorization': authToken
+        }
+    })
         .then(response => {
             if (!response.ok) {
                 throw new Error("Error fetching shopping cart items");
