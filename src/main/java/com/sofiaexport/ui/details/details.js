@@ -18,16 +18,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const countInStockElement = document.getElementById('count-in-stock');
             const addToCartButton = document.getElementById('addToCartButton');
-            addToCartButton.innerText = 'Add to Cart';
-            addToCartButton.addEventListener('click', function() {
-                addToCartHandler(partId)
-            });
 
-            if (data.countInStockItems > 0) {
-                countInStockElement.innerText = `In Stock: ${data.countInStockItems}`;
-                addToCartButton.style.display = 'block';
+            const isAuthenticated = localStorage.getItem('accessToken') !== null;
+
+            if (isAuthenticated) {
+                addToCartButton.innerText = 'Add to Cart';
+                addToCartButton.addEventListener('click', function() {
+                    addToCartHandler(partId)
+                });
+
+                if (data.countInStockItems > 0) {
+                    countInStockElement.innerText = `In Stock: ${data.countInStockItems}`;
+                    addToCartButton.style.display = 'block';
+                } else {
+                    countInStockElement.innerText = 'Out of Stock';
+                    addToCartButton.style.display = 'none';
+                }
             } else {
-                countInStockElement.innerText = 'Out of Stock';
                 addToCartButton.style.display = 'none';
             }
         })
@@ -53,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             location.reload();
         }).catch(error => {
-                console.error('Error during registration:', error);
+                console.error('Error while adding item to cart:', error);
             });
     }
 });
