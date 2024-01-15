@@ -19,7 +19,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const countInStockElement = document.getElementById('count-in-stock');
             const addToCartButton = document.getElementById('addToCartButton');
             addToCartButton.innerText = 'Add to Cart';
-            addToCartButton.addEventListener('click', addToCartHandler);
+            addToCartButton.addEventListener('click', function() {
+                addToCartHandler(partId)
+            });
 
             if (data.countInStockItems > 0) {
                 countInStockElement.innerText = `In Stock: ${data.countInStockItems}`;
@@ -31,8 +33,27 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .catch(error => console.error('Error fetching auto part details:', error));
 
-    function addToCartHandler() {
-        // Implement the logic to add the item to the cart
-        alert('Item added to cart!');
+    function addToCartHandler(autoPartId) {
+        const addToCardRequest = {
+            userId: localStorage.getItem('userId'),
+            autoPartId: autoPartId
+        };
+        var token = localStorage.getItem('accessToken');
+        var authToken = `Bearer ${token}`;
+        fetch('http://localhost:8080/api/v1/add-item', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': authToken
+            },
+            body: JSON.stringify(addToCardRequest)
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok.');
+            }
+            location.reload();
+        }).catch(error => {
+                console.error('Error during registration:', error);
+            });
     }
 });
