@@ -67,15 +67,20 @@ document.addEventListener("DOMContentLoaded", function () {
                     throw new Error("Error during checkout");
                 }
 
-                window.location.href = "../home/home-page.html"
+                var modal = document.getElementById('confirmationModal');
+                var modalMessage = document.getElementById('modalMessage');
+                var modalOkButton = document.getElementById('modalOkButton');
+
+                modalMessage.innerText = "Your order has been placed. Thank you!";
+                modal.style.display = 'block';
+
+                modalOkButton.addEventListener('click', function () {
+                    modal.style.display = 'none';
+                    window.location.href = "../home/home-page.html";
+                });
             })
             .catch(error => {
                 console.error('Error during checkout:', error);
             });
     }
 });
-
-
-
-/// now remove the description and "In Stock" text from order UI.
-// Add a Remove from cart button.
