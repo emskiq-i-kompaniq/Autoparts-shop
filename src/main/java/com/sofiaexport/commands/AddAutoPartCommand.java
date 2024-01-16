@@ -2,12 +2,14 @@ package com.sofiaexport.commands;
 
 import com.sofiaexport.model.AutoPart;
 import com.sofiaexport.model.PartType;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
 import java.util.Set;
 
 @Data
+@AllArgsConstructor
 @Builder(toBuilder = true)
 public class AddAutoPartCommand {
     private final String brand;

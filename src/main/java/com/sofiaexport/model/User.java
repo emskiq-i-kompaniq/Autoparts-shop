@@ -52,6 +52,14 @@ public class User implements UserDetails {
         this.orders = Collections.emptySet();
     }
 
+    public User(String id, String name, String password, String email, Role role) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
