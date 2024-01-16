@@ -23,19 +23,19 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
             var cartItemsContainer = document.getElementById("cartItems");
 
-            if (data.autoparts.length === 0) {
+            if (data.itemIds.length === 0) {
                 var emptyCartMessage = `<p>Your cart is empty.</p>`;
                 cartItemsContainer.innerHTML = emptyCartMessage;
             } else {
                 var sumHtml = `<p class="sum"><strong>Total Sum:</strong> ${data.sum}</p>`;
                 cartItemsContainer.insertAdjacentHTML('beforeend', sumHtml);
 
-                data.autoparts.forEach(function (autoPart) {
+                data.itemIds.forEach(function (item) {
                     var autoPartHtml = `
                         <li class="autoPart">
                             <div class="autoPartInfo">
-                                <p class="autoPartTitle"><strong>${autoPart.brand} - ${autoPart.partType}</strong></p>
-                                <p class="autoPartPrice">Price: ${autoPart.price}</p>
+                                <p class="autoPartTitle"><strong>${item.brand} - ${item.partType}</strong></p>
+                                <p class="autoPartPrice">Price: ${item.price}</p>
                             </div>
                         </li>
                     `;
@@ -74,3 +74,8 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 });
+
+
+
+/// now remove the description and "In Stock" text from order UI.
+// Add a Remove from cart button.
