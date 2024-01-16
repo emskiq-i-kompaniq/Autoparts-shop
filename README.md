@@ -59,8 +59,6 @@ UI-related components, including styles and JavaScript files for different pages
 - **Swagger**: Swagger is integrated into our project to facilitate API documentation and testing.
 
 
-Certainly! Here's the System Deployment section in GitHub-flavored markdown:
-
 System Deployment
 --
 
@@ -128,14 +126,19 @@ Utilize mock data or create test cases with predefined data for various scenario
 
 ## Application Walkthrough:
 ### Client-Side:
+
 - **Home Page:**
+
   ![Home Page](home-page.png)
 
 - **Product Details:**
+
   ![Product Details](detail-page.png)
 
 - **User Profile:**
+
   ![User Profile](profile-page.png)
+
 
 ### Server-Side:
 - **Logging:**
