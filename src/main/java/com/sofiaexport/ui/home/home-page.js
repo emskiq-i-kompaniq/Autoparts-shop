@@ -4,7 +4,7 @@ function createPartBox(autoPart) {
 
     // Customize the content based on your auto part properties
     partBox.innerHTML = `
-            <h3>${autoPart.brand}</h3>
+            <h3>${autoPart.brand} ${autoPart.partType}</h3>
             <p>Desc: ${autoPart.description}</p>
             <p>Price: ${autoPart.price}</p>
         `;
